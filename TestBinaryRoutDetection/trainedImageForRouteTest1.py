@@ -9,14 +9,14 @@ index_params =dict(algorithm = FLANN_INDEX_KDTREE, trees = 5 )
 
 flann = cv2.FlannBasedMatcher(index_params, {})
 
-trainImg=cv2.imread("trainedBinary.png",0)
+trainImg=cv2.imread("trainedBinary2.png",0)
 trainKP,trainDesc=detector.detectAndCompute(trainImg,None)
 
 #cam=cv2.VideoCapture(0)
 
 #while True:
     #ret, QueryImgBGR=cam.read()
-QueryImgBGR=cv2.imread("trafficBinary.png")
+QueryImgBGR=cv2.imread("testBinary4.png")
 QueryImg=cv2.cvtColor(QueryImgBGR,cv2.COLOR_BGR2GRAY)
 queryKP,queryDesc=detector.detectAndCompute(QueryImg,None)
 matches=flann.knnMatch(queryDesc,trainDesc,k=2)
