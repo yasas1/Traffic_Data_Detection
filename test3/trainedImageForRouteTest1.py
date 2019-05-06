@@ -16,7 +16,7 @@ trainKP,trainDesc=detector.detectAndCompute(trainImg,None)
 
 #while True:
     #ret, QueryImgBGR=cam.read()
-QueryImgBGR=cv2.imread("testBinary7.png")
+QueryImgBGR=cv2.imread("testBinary8.png")
 QueryImg=cv2.cvtColor(QueryImgBGR,cv2.COLOR_BGR2GRAY)
 queryKP,queryDesc=detector.detectAndCompute(QueryImg,None)
 matches=flann.knnMatch(queryDesc,trainDesc,k=2)
