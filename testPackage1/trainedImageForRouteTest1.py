@@ -16,7 +16,7 @@ trainKP,trainDesc=detector.detectAndCompute(trainImg,None)
 
 #while True:
     #ret, QueryImgBGR=cam.read()
-QueryImgBGR=cv2.imread("22Binary.png")
+QueryImgBGR=cv2.imread("dirBinary.png")
 QueryImg=cv2.cvtColor(QueryImgBGR,cv2.COLOR_BGR2GRAY)
 queryKP,queryDesc=detector.detectAndCompute(QueryImg,None)
 matches=flann.knnMatch(queryDesc,trainDesc,k=2)
@@ -39,9 +39,10 @@ if(len(goodMatch)>=MIN_MATCH_COUNT):
 
     H,status=cv2.findHomography(tp,qp,cv2.RANSAC,3.0)
 
-    print(H)
-
     h,w=trainImg.shape
+    print(h)
+    print(w)
+    
     trainBorder=np.float32([[[0,0],[0,h-1],[w-1,h-1],[w-1,0]]])
     print(trainBorder)
     queryBorder=cv2.perspectiveTransform(trainBorder,H)
