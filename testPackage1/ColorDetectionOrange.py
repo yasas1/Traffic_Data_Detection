@@ -6,7 +6,7 @@ img = cv2.imread("CropDirTest.png")
 hsv=cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
 
 red_lower=np.array([10,70,70],np.uint8)
-red_upper=np.array([15,255,255],np.uint8)
+red_upper=np.array([20,255,255],np.uint8)
 
 red=cv2.inRange(hsv, red_lower, red_upper)
 
@@ -21,7 +21,7 @@ res=cv2.bitwise_and(img, img, mask = red)
 for pic, contour in enumerate(contours):
     area = cv2.contourArea(contour)
     print(area)
-    if(area>150):
+    if(area>100):
         x,y,w,h = cv2.boundingRect(contour)
         img = cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),2)
         cv2.putText(img,"RED",(x,y),cv2.FONT_HERSHEY_SIMPLEX,0.7,(0,0,255))
