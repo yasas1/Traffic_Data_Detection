@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-image = cv2.imread('dirBinary.png')
+image = cv2.imread('CropDir.png')
 y=50#400
 x=218#600
 h=600#500

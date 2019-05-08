@@ -47,13 +47,13 @@ if(len(goodMatch)>=MIN_MATCH_COUNT):
     print(trainBorder)
     queryBorder=cv2.perspectiveTransform(trainBorder,H)
     print(np.int32(queryBorder))
+    print(np.int32(queryBorder[0][0][0]))
+
     cv2.polylines(QueryImgBGR,[np.int32(queryBorder)],True,(0,255,0),5)
 else:
     print("Not Enough match found- %d/%d"%(len(goodMatch),MIN_MATCH_COUNT))
 
 cv2.imshow('result',QueryImgBGR)
-#if cv2.waitKey(10)==ord('q'):
-   
-#cam.release()
+
 #cv2.destroyAllWindows()
 
