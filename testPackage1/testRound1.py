@@ -7,8 +7,6 @@ gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 retval, QueryImgBGR = cv2.threshold(gray, 185, 255, cv2.THRESH_BINARY)
 
-cv2.imshow('threshold',QueryImgBGR)
-
 MIN_MATCH_COUNT = 30
 
 detector = cv2.xfeatures2d.SIFT_create() #cv2.SIFT()
@@ -21,7 +19,7 @@ trainImg=cv2.imread("dirBinaryTrained.png",0)
 trainKP,trainDesc=detector.detectAndCompute(trainImg,None)
 
 #QueryImgBGR=cv2.imread("dirBinary.png")
-QueryImg=cv2.cvtColor(QueryImgBGR,cv2.COLOR_BGR2GRAY)
+QueryImg=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 queryKP,queryDesc=detector.detectAndCompute(QueryImg,None)
 matches=flann.knnMatch(queryDesc,trainDesc,k=2)
 
@@ -58,10 +56,10 @@ if(len(goodMatch)>=MIN_MATCH_COUNT):
     print(y)
     print(x)
     
-    cv2.imshow('result',QueryImgBGR)
+    cv2.imshow('Original',image)
     
-    crop = QueryImgBGR[y:y+h, x:x+w]
-    cv2.imshow('Image', crop)
+    routeDetected = image[y:y+h, x:x+w]
+    cv2.imshow('Detected', routeDetected)
 
     #cv2.polylines(QueryImgBGR,[np.int32(queryBorder)],True,(0,255,0),5)
 else:
