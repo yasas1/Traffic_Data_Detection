@@ -7,7 +7,7 @@ gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 retval, QueryImgBGR = cv2.threshold(gray, 185, 255, cv2.THRESH_BINARY)
 
-#Route detecting
+#-----------Route detecting
 
 MIN_MATCH_COUNT = 30
 
@@ -55,10 +55,8 @@ if(len(goodMatch)>=MIN_MATCH_COUNT):
     routeDetected = image[y:y+h, x:x+w]
     
     cv2.imshow('Original',image)
-    #cv2.imshow('Detected', routeDetected)
-    #cv2.polylines(QueryImgBGR,[np.int32(queryBorder)],True,(0,255,0),5)
     
-    #color detecting
+    #---------------color detecting
     hsv=cv2.cvtColor(routeDetected,cv2.COLOR_BGR2HSV)
 
     orange_lower=np.array([10,155,255],np.uint8)
@@ -70,7 +68,7 @@ if(len(goodMatch)>=MIN_MATCH_COUNT):
 
     orange=cv2.dilate(orange, kernal)
     
-    #Tracking the Red Color
+    #Tracking the Orange Color
     (_,contours,hierarchy)=cv2.findContours(orange,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 
     for pic, contour in enumerate(contours):
