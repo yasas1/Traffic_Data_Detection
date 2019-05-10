@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-image = cv2.imread('CropDir.png')
+image = cv2.imread('33.png')
 
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
@@ -61,8 +61,8 @@ if(len(goodMatch)>=MIN_MATCH_COUNT):
     #color detecting
     hsv=cv2.cvtColor(routeDetected,cv2.COLOR_BGR2HSV)
 
-    orange_lower=np.array([10,70,70],np.uint8)
-    orange_upper=np.array([20,255,255],np.uint8)
+    orange_lower=np.array([10,120,255],np.uint8)
+    orange_upper=np.array([50,255,255],np.uint8)
 
     orange=cv2.inRange(hsv, orange_lower, orange_upper)
 

@@ -20,4 +20,4 @@ import time
 time.sleep(3)
 
 scr = pyautogui.screenshot()
-scr.save('image2.png')
+scr.save('image3.png')
