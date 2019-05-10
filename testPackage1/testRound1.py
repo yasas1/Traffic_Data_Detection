@@ -61,8 +61,8 @@ if(len(goodMatch)>=MIN_MATCH_COUNT):
     #color detecting
     hsv=cv2.cvtColor(routeDetected,cv2.COLOR_BGR2HSV)
 
-    orange_lower=np.array([10,120,255],np.uint8)
-    orange_upper=np.array([50,255,255],np.uint8)
+    orange_lower=np.array([10,155,255],np.uint8)
+    orange_upper=np.array([80,255,255],np.uint8)
 
     orange=cv2.inRange(hsv, orange_lower, orange_upper)
 
@@ -76,12 +76,13 @@ if(len(goodMatch)>=MIN_MATCH_COUNT):
     for pic, contour in enumerate(contours):
         area = cv2.contourArea(contour)
         print(area)
-        if(area>100):
+        if(area>90):
             x,y,w,h = cv2.boundingRect(contour)
-            colorteDetected = cv2.rectangle(routeDetected,(x,y),(x+w,y+h),(0, 128, 255),2)
+            colorteDetected = cv2.rectangle(routeDetected,(x,y),(x+w,y+h),(0, 160, 255),2)
             cv2.putText(colorteDetected,"Orange",(x,y),cv2.FONT_HERSHEY_SIMPLEX,0.7,(0, 128, 255))
+            cv2.imshow("Color Detecting",colorteDetected)
 
-    cv2.imshow("Color Detecting",colorteDetected)
+    
 
 else:
     print("Not Enough match found- %d/%d"%(len(goodMatch),MIN_MATCH_COUNT))
