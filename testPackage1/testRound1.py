@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-image = cv2.imread('33.png')
+image = cv2.imread('CropDir.png')
 
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
@@ -56,8 +56,10 @@ if(len(goodMatch)>=MIN_MATCH_COUNT):
     
     cv2.imshow('Original',image)
     
-    #---------------color detecting
+            #---------------color detecting
     hsv=cv2.cvtColor(routeDetected,cv2.COLOR_BGR2HSV)
+
+    #----------- Orange color
 
     orange_lower=np.array([10,155,255],np.uint8)
     orange_upper=np.array([80,255,255],np.uint8)
@@ -74,14 +76,40 @@ if(len(goodMatch)>=MIN_MATCH_COUNT):
     for pic, contour in enumerate(contours):
         area = cv2.contourArea(contour)
         print(area)
-        if(area>90):
+        if(area>150):
             x,y,w,h = cv2.boundingRect(contour)
             colorteDetected = cv2.rectangle(routeDetected,(x,y),(x+w,y+h),(0, 160, 255),2)
             cv2.putText(colorteDetected,"Orange",(x,y),cv2.FONT_HERSHEY_SIMPLEX,0.7,(0, 128, 255))
-            cv2.imshow("Color Detecting",colorteDetected)
+            
+    #-------------- Red Color
 
-    
+    red_lower=np.array([160,100,100],np.uint8)
+    red_upper=np.array([180,255,255],np.uint8)
+
+    red=cv2.inRange(hsv, red_lower, red_upper)
+
+    kernal = np.ones((5 ,5), "uint8")
+
+    red=cv2.dilate(red, kernal)
+
+    #Tracking the Red Color
+    (_,contours,hierarchy)=cv2.findContours(red,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+
+    for pic, contour in enumerate(contours):
+        area = cv2.contourArea(contour)
+        print(area)
+        if(area>150):
+            x,y,w,h = cv2.boundingRect(contour)
+            colorteDetected = cv2.rectangle(colorteDetected,(x,y),(x+w,y+h),(0, 0, 255),2)
+            cv2.putText(colorteDetected,"Red",(x,y),cv2.FONT_HERSHEY_SIMPLEX,0.7,(0, 0, 255))
+
+    cv2.imshow("Color Detecting",colorteDetected)
 
 else:
     print("Not Enough match found- %d/%d"%(len(goodMatch),MIN_MATCH_COUNT))
+
+
+
+
+    
 
