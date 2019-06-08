@@ -13,7 +13,7 @@ routeDetected = image[y:y+h, x:x+w]
 #cv2.imwrite('routeDetected.png',routeDetected)
 
 cv2.imshow('Original',image)
-
+hsv=cv2.cvtColor(routeDetected,cv2.COLOR_BGR2HSV)
 #image[368,159]=[0,0,0]
 cv2.circle(image,(447,63), 63, (0,0,255), -1)
 
