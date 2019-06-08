@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-image = cv2.imread('CropDir.png')
+image = cv2.imread('33.png')
 
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
@@ -54,9 +54,13 @@ if(len(goodMatch)>=MIN_MATCH_COUNT):
     
     routeDetected = image[y:y+h, x:x+w]
     
+    print("y+h",y+h)
+    print("x+w",x+w)
+    
     cv2.imshow('Original',image)
     
-            #---------------color detecting
+#---------------color detecting
+    
     hsv=cv2.cvtColor(routeDetected,cv2.COLOR_BGR2HSV)
 
     #----------- Orange color
@@ -75,9 +79,11 @@ if(len(goodMatch)>=MIN_MATCH_COUNT):
 
     for pic, contour in enumerate(contours):
         area = cv2.contourArea(contour)
-        print(area)
+        #print(area)
         if(area>150):
             x,y,w,h = cv2.boundingRect(contour)
+            print("orange x",x)
+            print("orange y",y)
             colorteDetected = cv2.rectangle(routeDetected,(x,y),(x+w,y+h),(0, 160, 255),2)
             cv2.putText(colorteDetected,"Orange",(x,y),cv2.FONT_HERSHEY_SIMPLEX,0.7,(0, 128, 255))
             
@@ -97,13 +103,17 @@ if(len(goodMatch)>=MIN_MATCH_COUNT):
 
     for pic, contour in enumerate(contours):
         area = cv2.contourArea(contour)
-        print(area)
+        #print(area)
         if(area>150):
             x,y,w,h = cv2.boundingRect(contour)
+            print("red x",x)
+            print("red y",y)
             colorteDetected = cv2.rectangle(colorteDetected,(x,y),(x+w,y+h),(0, 0, 255),2)
             cv2.putText(colorteDetected,"Red",(x,y),cv2.FONT_HERSHEY_SIMPLEX,0.7,(0, 0, 255))
 
     cv2.imshow("Color Detecting",colorteDetected)
+    cv2.imwrite('Detected2.png',colorteDetected)
+    
 
 else:
     print("Not Enough match found- %d/%d"%(len(goodMatch),MIN_MATCH_COUNT))
