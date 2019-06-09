@@ -67,7 +67,7 @@ if(len(goodMatch)>=MIN_MATCH_COUNT):
 
     orange_lower=np.array([10,155,255],np.uint8)
     orange_upper=np.array([80,255,255],np.uint8)
-
+        #mask for orange
     orange=cv2.inRange(hsv, orange_lower, orange_upper)
 
     kernal = np.ones((5 ,5), "uint8")

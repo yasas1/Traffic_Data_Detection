@@ -14,13 +14,13 @@ cv2.imwrite('routeDetected.png',routeDetected)
 
 route = cv2.imread('routeDetected.png')
 
-route_hsv = cv2.cvtColor(routeDetected,cv2.COLOR_BGR2HSV)
+#route_hsv = cv2.cvtColor(routeDetected,cv2.COLOR_BGR2HSV)
 
-cv2.imshow('Original',image)
-
-#image[368,159]=[0,0,0]
+#route[40,50]=[0, 160, 255]
 #cv2.circle(image,(447,63), 63, (0,0,255), -1)
 
-cv2.imshow('routeDetected',route_hsv)
+colorDetected = cv2.rectangle(route,(58,67),(65,72),(0, 160, 255),2)
+
+cv2.imshow('routeDetected',colorDetected)
     
 
