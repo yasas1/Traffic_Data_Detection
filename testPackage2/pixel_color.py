@@ -10,7 +10,7 @@ color = hsv[58,67]
 
 print(color)
 
-cv2.rectangle(img,(58,67),(65,72),(10, 160, 255),2)
-cv2.rectangle(img,(70,70),(75,75),(255,229,84),2)
+cv2.rectangle(img,(58,67),(65,72),(0, 0, 0),2)
+cv2.rectangle(img,(70,70),(75,75),(0,0,0),2)
 
 cv2.imshow('pixel Color',img)
