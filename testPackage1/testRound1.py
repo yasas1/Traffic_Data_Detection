@@ -73,12 +73,15 @@ if(len(goodMatch)>=MIN_MATCH_COUNT):
     kernal = np.ones((5 ,5), "uint8")
 
     orange=cv2.dilate(orange, kernal)
+    #cv2.imshow("Color Dilate",orange)
     
     #Tracking the Orange Color
     (_,contours,hierarchy)=cv2.findContours(orange,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-
+    #cv2.drawContours(image, contours, -1, (0,255,0), 3)
+    
     for pic, contour in enumerate(contours):
         area = cv2.contourArea(contour)
+        print(contour)
         #print(area)
         if(area>150):
             x,y,w,h = cv2.boundingRect(contour)
