@@ -14,7 +14,8 @@ refreshrate=5
 
 driver = webdriver.Chrome(r"C:\Users\Dell\Desktop\chromedriver.exe")
 driver.maximize_window()
-driver.get("https://www.google.com/maps/@6.8874059,79.8676187,14.78z/data=!5m1!1e1")
+driver.get("https://www.google.com/maps/dir/6.8463651,79.9481864/6.896591,79.8599699/@6.8662918,79.8862328,14z/data=!4m2!4m1!3e0")
+
 time.sleep(4)
 
 x=1

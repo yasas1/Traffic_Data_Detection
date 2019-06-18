@@ -2,7 +2,7 @@ from PIL import Image
 from pylab import *
 
 # read image to array
-im = array(Image.open('test_img.jpg'))
+im = array(Image.open('Capture12.png'))
 
 # plot the image
 imshow(im)
