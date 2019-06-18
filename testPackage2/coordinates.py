@@ -2,10 +2,16 @@ from PIL import Image
 from pylab import *
 
 # read image to array
-im = array(Image.open('Capture12.png'))
+im = array(Image.open('newIm1.png'))
+
+y=0
+x=500
+h=1000
+w=1400
+crop = im[y:y+h, x:x+w]
 
 # plot the image
-imshow(im)
+imshow(crop)
 
 # some points
 x = [100,100,400,400]
